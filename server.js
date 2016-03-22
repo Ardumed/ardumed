@@ -1,18 +1,19 @@
 var express = require('express');
 var app = express();
+var path = require('path');
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/html/index.html'));
+  res.sendFile(path.join(__dirname + '/app/html/index.html'));
 });
 
 
 app.get('/today', function (req, res) {
-  res.sendFile(path.join(__dirname + '/html/today.html'));
+  res.sendFile(path.join(__dirname + '/app/html/today.html'));
 });
 
 
 app.post('/setprescription', function (req, res) {
-  res.sendFile(path.join(__dirname + '/html/setprescription.html'));
+  res.sendFile(path.join(__dirname + '/app/html/setprescription.html'));
 });
 /**
  * - POST : set prescription
