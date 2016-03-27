@@ -3,6 +3,7 @@ var app = express();
 var path = require('path');
 
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
+app.use(express.static(__dirname + '/src/dashboard'));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/src/login/login.html'));
@@ -10,7 +11,7 @@ app.get('/', function (req, res) {
 
 
 app.get('/dashboard', function (req, res) {
-  res.sendFile(path.join(__dirname + '/src/dashboard/dashboardForm.html'));
+  res.sendFile(path.join(__dirname + '/src/dashboard/DashboardForm.html'));
 });
 
 
