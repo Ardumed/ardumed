@@ -15,6 +15,7 @@
     "express": "^4.13.4",
     "hapi": "^13.2.1",
     "johnny-five": "^0.9.34",
+    "mongodb": "^2.1.10",
     "serialport": "^2.0.6"
   }
 }
