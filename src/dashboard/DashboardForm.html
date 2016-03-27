@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard Form</title>
+    <link rel="stylesheet" href="DashboardForm.scss" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript" src="../../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../bower_components/bootstrap/js/transition.js"></script>
+    <script type="text/javascript" src="../../bower_components/bootstrap/js/collapse.js"></script>
+    <script type="text/javascript" src="../../bower_components/moment/min/moment-with-locales.js"></script>
+    <script type="text/javascript" src="../../bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="../../bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+    <script src="DashboardForm.js" charset="utf-8"></script>
+  </head>
+  <body class="body-tag">
+    <div class="row">
+      <div class="col-sm-12 header-container">
+        <div class="header-text text-center">Medicine Automation</div>
+      </div>
+    </div>
+
+    <form class="" action="index.html" method="post"></form>
+
+    <form>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2 form-container">
+          <div class="form-heading">Kindly fill your Prescription Details</div>
+          <!-- Name -->
+          <div class="row">
+            <div class="col-sm-6">
+              <fieldset class="form-group">
+                <label class="font16" for="patientName">Patient Name</label>
+                <input type="text" class="form-control" id="patientName" placeholder="Name">
+              </fieldset>
+            </div>
+          </div>
+
+          <!-- Age -->
+          <div class="row">
+            <div class="col-sm-6">
+              <fieldset class="form-group">
+                <label class="font16" for="patientAge">Patient Age</label>
+                <input type="number" min="1" max="100" class="form-control" id="patientAge" placeholder="Age">
+              </fieldset>
+            </div>
+          </div>
+
+          <!-- Prescription dates -->
+          <div style="overflow:hidden;">
+            <div class="form-group">
+              <div class="row">
+                <!-- From Date -->
+                <div class="col-md-5">
+                  <label class="font16" for="datetimepicker1">Prescription From:</label>
+                  <div id="datetimepicker1"></div>
+                </div>
+                <!-- To Date -->
+                <div class="col-md-5 col-sm-push-2">
+                  <label class="font16" for="datetimepicker2">Prescription To:</label>
+                  <div id="datetimepicker2"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Medicine Name -->
+          <div class="row">
+            <div class="col-sm-6">
+              <fieldset class="form-group">
+                <label class="font16" for="medicineName">Medicine Name</label>
+                <input type="text" class="form-control" id="medicineName" placeholder="Medicine">
+              </fieldset>
+            </div>
+          </div>
+
+          <!-- Times of Day -->
+          <div class="row">
+            <div class="col-md-6 prescription-time">
+              <label class="font16">Dosage Time</label>
+              <div class="squaredThree">
+                <input type="checkbox" value="None" id="morningCheckbox" name="check" checked/>
+                <label for="morningCheckbox" class="prescription-time-checkbox-label"></label>
+                <label class="prescription-time-text">Morning</label>
+              </div>
+              <div class="squaredThree">
+                <input type="checkbox" value="None" id="noonCheckbox" name="check" checked/>
+                <label for="noonCheckbox" class="prescription-time-checkbox-label"></label>
+                <label class="prescription-time-text">Afternoon</label>
+              </div>
+              <div class="squaredThree">
+                <input type="checkbox" value="None" id="eveningCheckbox" name="check" checked/>
+                <label for="eveningCheckbox" class="prescription-time-checkbox-label"></label>
+                <label class="prescription-time-text">Evening</label>
+              </div>
+              <div class="squaredThree">
+                <input type="checkbox" value="None" id="nightCheckbox" name="check" checked/>
+                <label for="nightCheckbox" class="prescription-time-checkbox-label"></label>
+                <label class="prescription-time-text">Night</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dosage -->
+          <div class="row">
+            <div class="col-md-6 prescription-time">
+              <label class="font16">Dosage Quantity</label>
+              <div class="squaredThree">
+                <input type="checkbox" value="None" id="halfSpoon" name="check" checked/>
+                <label for="halfSpoon" class="prescription-time-checkbox-label"></label>
+                <label class="prescription-time-text">Half Spoon (2 ml)</label>
+              </div>
+              <div class="squaredThree">
+                <input type="checkbox" value="None" id="oneSpoon" name="check" checked/>
+                <label for="oneSpoon" class="prescription-time-checkbox-label"></label>
+                <label class="prescription-time-text">One Spoon (4 ml)</label>
+              </div>
+              <div class="squaredThree">
+                <input type="checkbox" value="None" id="twoSpoon" name="check" checked/>
+                <label for="twoSpoon" class="prescription-time-checkbox-label"></label>
+                <label class="prescription-time-text">Two spoons (8 ml)</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="row">
+            <div class="col-sm-2 btn btn-primary">Save</div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </body>
+</html>

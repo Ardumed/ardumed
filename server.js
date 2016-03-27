@@ -2,13 +2,15 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
+app.use(express.static(__dirname + '/bower_components'));
+
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/app/html/index.html'));
+  res.sendFile(path.join(__dirname + '/src/login/login.html'));
 });
 
 
-app.get('/today', function (req, res) {
-  res.sendFile(path.join(__dirname + '/app/html/today.html'));
+app.get('/dashboard', function (req, res) {
+  res.sendFile(path.join(__dirname + '/src/dashboard/dashboardForm.html'));
 });
 
 
