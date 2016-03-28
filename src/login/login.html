@@ -18,23 +18,20 @@
     <!-- Login button -->
     <div class="row">
       <div class="col-sm-12 text-center">
-        <div class="btn btn-lg login-button">
+        <div class="btn btn-lg login-button" id="authorize-div">
           <i class="fa fa-google-plus google-login-icon"></i>
-          <span class="login-button-text">Sign in with Google</span>
+          <span class="login-button-text" id="authorize-button" onclick="handleAuthClick(event)">Sign in with Google</span>
         </div>
       </div>
     </div>
 
     <!-- Auth -->
-    <div id="authorize-div" style="display: none">
+    <div id="authorize-div">
       <span>Authorize access to Google Calendar API</span>
       <!--Button for the user to click to initiate auth sequence -->
-      <button id="authorize-button" onclick="handleAuthClick(event)">
-        Authorize
-      </button>
+      <button id="authorize-button" onclick="handleAuthClick(event)">Authorize</button>
     </div>
     <pre id="output"></pre>
-
     <button onclick="hhhhh()">
       Add
     </button>

@@ -73,7 +73,7 @@ function countMedicine() {
   else {
     // add new input fields according to the new medicine number and make the corresponding fields visible
     for (var i = oldMedicineNumber; i < medicineNumber; i++) {
-      $('.medicine-container').append('<div class="col-sm-4" id="medicineName' + (i+1) + '"><input type="text" class="form-control medicine-input" placeholder="Medicine Name ' + (i+1) + '"></div>');
+      $('.medicine-container').append('<div class="col-sm-4" name="medicineName' + (i+1) + '" id="medicineName' + (i+1) + '"><input type="text" class="form-control medicine-input" placeholder="Medicine Name ' + (i+1) + '"></div>');
       $('#dosageTime' + (i+1)).removeClass('hidden');
       $('#dosageQuantity' + (i+1)).removeClass('hidden');
     }

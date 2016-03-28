@@ -27,6 +27,7 @@ function handleAuthResult(authResult) {
   if (authResult && !authResult.error) {
     // Hide auth UI, then load client library.
     authorizeDiv.style.display = 'none';
+    window.location="./DashboardForm.html";
     loadCalendarApi();
   } else {
     // Show auth UI, allowing the user to initiate authorization by
