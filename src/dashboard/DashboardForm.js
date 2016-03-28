@@ -40,14 +40,11 @@ $(function() {
   // Get parent elements of calendars
   var fromDateParent = $('#datetimepicker1').parent();
   var toDateParent = $('#datetimepicker2').parent();
-  console.log(fromDateCalendar);
-  console.log(toDateCalendar);
 
   // Update if change in FROM date
   fromDateParent.on('dp.change', function(e) {
     fromDate = e.date;
     fromDateCalendar = fromDate._d.toJSON().substr(0,10);
-    console.log(fromDateCalendar);
     document.patientForm.fromDate.value = e.date;
     // modify minimum date for TO calendar according to value from FROM calendar
     $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
@@ -57,7 +54,6 @@ $(function() {
   toDateParent.on('dp.change', function(e) {
     toDate = e.date;
     toDateCalendar = toDate._d.toJSON().substr(0,10);
-    console.log(toDateCalendar);
     document.patientForm.toDate.value = e.date;
   });
 });
