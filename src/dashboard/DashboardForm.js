@@ -1,5 +1,20 @@
 var medicineNumber = 0, oldMedicineNumber = 0, fromDate, toDate;
 
+var CLIENT_ID = '598206174272-k89f59obn673aaql9u6bjbn59lc19tnd.apps.googleusercontent.com';
+var SCOPES = ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/userinfo.profile"];
+$(function() {
+  gapi.auth.authorize({
+    'client_id': CLIENT_ID,
+    'scope': SCOPES.join(' '),
+    'immediate': true
+  }, handleAuthResult);
+});
+
+function handleAuthResult(authResult) {
+  if (!(authResult && !authResult.error))
+    window.location="./login.html";
+}
+
 $(function() {
   // get current date
   var currDate = new Date();
@@ -27,7 +42,7 @@ $(function() {
   // Update if change in FROM date
   fromDateParent.on('dp.change', function(e) {
     fromDate = e.date;
-
+    document.patientForm.fromDate.value = e.date;
     // modify minimum date for TO calendar according to value from FROM calendar
     $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
   });
@@ -35,6 +50,7 @@ $(function() {
   // Update if change in TO date
   toDateParent.on('dp.change', function(e) {
     toDate = e.date;
+    document.patientForm.toDate.value = e.date;
   });
 });
 
@@ -73,7 +89,7 @@ function countMedicine() {
   else {
     // add new input fields according to the new medicine number and make the corresponding fields visible
     for (var i = oldMedicineNumber; i < medicineNumber; i++) {
-      $('.medicine-container').append('<div class="col-sm-4" name="medicineName' + (i+1) + '" id="medicineName' + (i+1) + '"><input type="text" class="form-control medicine-input" placeholder="Medicine Name ' + (i+1) + '"></div>');
+      $('.medicine-container').append('<div class="col-sm-4" id="medicineName' + (i+1) + '"><input type="text" name="medicineName' + (i+1) + '" class="form-control medicine-input" placeholder="Medicine Name ' + (i+1) + '"></div>');
       $('#dosageTime' + (i+1)).removeClass('hidden');
       $('#dosageQuantity' + (i+1)).removeClass('hidden');
     }
@@ -81,4 +97,14 @@ function countMedicine() {
 
   // update old medicine number for deletion in next iteration
   oldMedicineNumber = medicineNumber;
+}
+
+function addEvent()
+{
+  var summary = "Medicine Reminder";
+  var description = "";
+  for(var i=0;i<document.patientForm.medicineNumber.value;i++)
+    {
+      description += "";
+    }
 }
