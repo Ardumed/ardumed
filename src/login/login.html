@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login Medicine Automation</title>
+    <link rel="stylesheet" href="/login.css" media="screen" title="no title" charset="utf-8">
+    <link rel="import" href="/dependencies.html">
+    <script src="/login.js" charset="utf-8"></script>
+  </head>
+  <body class="body-tag">
+    <!-- Logo -->
+    <div class="row">
+      <div class="ardumed-logo-container text-center">
+        <img src="/ardumed_logo.png" alt="" class="ardumed-logo center"/>
+      </div>
+    </div>
+
+    <!-- Login button -->
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="btn btn-lg login-button">
+          <i class="fa fa-google-plus google-login-icon"></i>
+          <span class="login-button-text">Sign in with Google</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Auth -->
+    <div id="authorize-div">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+    </div>
+    <pre id="output"></pre>
+
+    <button onclick="hhhhh()">
+      Add
+    </button>
+  </body>
+</html>

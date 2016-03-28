@@ -1,0 +1,30 @@
+.body-tag {
+  background-color: rgba(209, 190, 190, 0.35);
+  background: url('dimension.png');
+  height: 100vh;
+}
+
+/* Logo styling */
+.ardumed-logo-container {
+  height: auto;
+  margin: 100px 0 50px;
+}
+.ardumed-logo {
+  height: 400px;
+}
+
+/* Login button styling */
+.login-button {
+  background-color: #DC4E41;
+  color: #fff;
+}
+.login-button:hover {
+  background-color: #E47166;
+}
+.login-button:hover .login-button-text{
+  color: #fff;
+}
+.google-login-icon {
+  color: #fff;
+  padding-right: 10px;
+}
