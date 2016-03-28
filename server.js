@@ -43,15 +43,18 @@ var getDetails = function(req){
   det.from = current;
   current.setDate(current.getDay()+30);
   det.to = current;
-  det.med1.morning = req.body.morningCheckbox1;
-  det.med1.noon = req.body.noonCheckbox1;
-  det.med1.night = req.body.nightCheckbox1;
-  det.med2.morning = req.body.morningCheckbox2;
-  det.med2.noon = req.body.noonCheckbox2;
-  det.med2.night = req.body.nightCheckbox2;
-  det.med3.morning = req.body.morningCheckbox3;
-  det.med3.noon = req.body.noonCheckbox3;
-  det.med3.night = req.body.nightCheckbox3;
+  det.med0 = req.body.medicineName1;
+  det.med0morning = req.body.morningCheckbox1;
+  det.med0noon = req.body.noonCheckbox1;
+  det.med0night = req.body.nightCheckbox1;
+  // det.med1 = req.body.medicineName2;
+  // det.med1.morning = req.body.morningCheckbox2;
+  // det.med1.noon = req.body.noonCheckbox2;
+  // det.med1.night = req.body.nightCheckbox2;
+  // det.med2 = req.body.medicineName2;
+  // det.med2.morning = req.body.morningCheckbox3;
+  // det.med2.noon = req.body.noonCheckbox3;
+  // det.med2.night = req.body.nightCheckbox3;
 
   var insertDocument = function(db, callback) {
      db.collection('user').insertOne(det, function(err, result) {
