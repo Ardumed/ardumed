@@ -27,7 +27,7 @@ function handleAuthResult(authResult) {
   if (authResult && !authResult.error) {
     // Hide auth UI, then load client library.
     authorizeDiv.style.display = 'none';
-    window.location="./DashboardForm.html";
+    // window.location="./DashboardForm.html";
     loadCalendarApi();
   } else {
     // Show auth UI, allowing the user to initiate authorization by
@@ -116,15 +116,15 @@ function hhhhh() {
     'transparency': 'transparent',
     'visibility': 'public',
     'start': {
-      'dateTime': '2016-03-29T09:00:00-07:00',
-      'timeZone': 'America/Los_Angeles'
+      'dateTime': '2016-03-29T20:00:08',
+      'timeZone': 'Asia/Kolkata'
     },
     'end': {
-      'dateTime': '2016-03-29T17:00:00-07:00',
-      'timeZone': 'America/Los_Angeles'
+      'dateTime': '2016-03-29T20:30:48',
+      'timeZone': 'Asia/Kolkata'
     },
     'recurrence': [
-      'RRULE:FREQ=DAILY;COUNT=1'
+      'RRULE:FREQ=DAILY;COUNT=2'
     ],
     'attendees': [{
       'email': 'lpage@example.com'

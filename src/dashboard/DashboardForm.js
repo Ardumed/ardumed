@@ -1,4 +1,4 @@
-var medicineNumber = 0, oldMedicineNumber = 0, fromDate, toDate;
+var medicineNumber = 0, oldMedicineNumber = 0, fromDate, toDate, fromDateCalendar, toDateCalendar;
 
 var CLIENT_ID = '598206174272-k89f59obn673aaql9u6bjbn59lc19tnd.apps.googleusercontent.com';
 var SCOPES = ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/userinfo.profile"];
@@ -26,6 +26,7 @@ $(function() {
     minDate: currDate
   });
   fromDate = $('#datetimepicker1').data("DateTimePicker").date();
+  fromDateCalendar = fromDate._d.toJSON().substr(0,10);
 
   // Set up calendar for "Prescription to"
   $('#datetimepicker2').datetimepicker({
@@ -34,14 +35,19 @@ $(function() {
     minDate: fromDate
   });
   toDate = $('#datetimepicker2').data("DateTimePicker").date();
+  toDateCalendar = toDate._d.toJSON().substr(0,10);
 
   // Get parent elements of calendars
   var fromDateParent = $('#datetimepicker1').parent();
   var toDateParent = $('#datetimepicker2').parent();
+  console.log(fromDateCalendar);
+  console.log(toDateCalendar);
 
   // Update if change in FROM date
   fromDateParent.on('dp.change', function(e) {
     fromDate = e.date;
+    fromDateCalendar = fromDate._d.toJSON().substr(0,10);
+    console.log(fromDateCalendar);
     document.patientForm.fromDate.value = e.date;
     // modify minimum date for TO calendar according to value from FROM calendar
     $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
@@ -50,6 +56,8 @@ $(function() {
   // Update if change in TO date
   toDateParent.on('dp.change', function(e) {
     toDate = e.date;
+    toDateCalendar = toDate._d.toJSON().substr(0,10);
+    console.log(toDateCalendar);
     document.patientForm.toDate.value = e.date;
   });
 });
