@@ -1,20 +1,5 @@
 var medicineNumber = 0, oldMedicineNumber = 0, fromDate, toDate, fromDateCalendar, toDateCalendar;
 
-var CLIENT_ID = '598206174272-k89f59obn673aaql9u6bjbn59lc19tnd.apps.googleusercontent.com';
-var SCOPES = ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/userinfo.profile"];
-$(function() {
-  gapi.auth.authorize({
-    'client_id': CLIENT_ID,
-    'scope': SCOPES.join(' '),
-    'immediate': true
-  }, handleAuthResult);
-});
-
-function handleAuthResult(authResult) {
-  if (!(authResult && !authResult.error))
-    window.location="./login.html";
-}
-
 $(function() {
   // get current date
   var currDate = new Date();
@@ -103,48 +88,200 @@ function countMedicine() {
   oldMedicineNumber = medicineNumber;
 }
 
-function addEvent()
+function createAllEvent()
 {
   var summary = "Medicine Reminder";
   var description = ["","",""];
   for(var i=0;i<medicineNumber;i++)
-    {
-      if($('#morningCheckbox' + (i+1)).prop('checked'))
+  {
+    if($('#morningCheckbox' + (i+1)).prop('checked'))
       description[0] += " Medicine " + (i+1) + ": " + $('#medicineName' + (i+1) + ' input').val();
-      if($('#noonCheckbox' + (i+1)).prop('checked'))
+    if($('#noonCheckbox' + (i+1)).prop('checked'))
       description[1] += " Medicine " + (i+1) + ": " + $('#medicineName' + (i+1) + ' input').val();
-      if($('#nightCheckbox' + (i+1)).prop('checked'))
+    if($('#nightCheckbox' + (i+1)).prop('checked'))
       description[2] += " Medicine " + (i+1) + ": " + $('#medicineName' + (i+1) + ' input').val();
+  }
+  var startDate = [];
+  var endDate = [];
+  startDate[0] = fromDateCalendar + 'T08:30:00';
+  startDate[1] = fromDateCalendar + 'T13:30:00';
+  startDate[2] = fromDateCalendar + 'T20:30:00';
+  endDate[0] = fromDateCalendar + 'T09:30:00';
+  endDate[1] = fromDateCalendar + 'T14:30:00';
+  endDate[2] = fromDateCalendar + 'T21:30:00';
+  var reccur =  Math.floor(( Date.parse(toDate) - Date.parse(fromDate) ) / 86400000) +1;
+    var reccurence = "RRULE:FREQ=DAILY;COUNT="+reccur.toString();
+  var event;
+  for(var i=0;i<3;i++)
+  {
+    if(description[i].localeCompare("")!=0)
+    {
+      event = {
+        'summary': summary,
+        'description': description[i],
+        'transparency': 'transparent',
+        'visibility': 'public',
+        'start': {
+          'dateTime': startDate[i],
+          'timeZone': 'Asia/Kolkata'
+        },
+        'end': {
+          'dateTime': endDate[i],
+          'timeZone': 'Asia/Kolkata'
+        },
+        'recurrence': [
+          reccurence
+        ],
+        'reminders': {
+          'useDefault': false,
+          'overrides': [{
+            'method': 'email',
+            'minutes': 60
+          }, {
+            'method': 'popup',
+            'minutes': 10
+          }]
+        }
+      };
+            addNewEvent(event);
+      console.log(event);
     }
-  console.log(description);
-  var reccur =  Math.floor(( Date.parse(toDate) - Date.parse(fromDate) ) / 86400000);
-  var reccurence = "RRULE:FREQ=DAILY;COUNT="+reccur;
-    var event = {
-    'summary': summary,
-    'description': description[0],
-    'transparency': 'transparent',
-    'visibility': 'public',
-    'start': {
-      'dateTime': '2016-03-29T08:00:00',
-      'timeZone': 'Asia/Kolkata'
-    },
-    'end': {
-      'dateTime': '2016-03-29T09:00:00',
-      'timeZone': 'Asia/Kolkata'
-    },
-    'recurrence': [
-      reccurence
-    ],
-    'reminders': {
-      'useDefault': false,
-      'overrides': [{
-        'method': 'email',
-        'minutes': 60
-      }, {
-        'method': 'popup',
-        'minutes': 10
-      }]
+  }
+}
+
+//function addOneEvent(event) {
+//  var CLIENT_ID = '598206174272-k89f59obn673aaql9u6bjbn59lc19tnd.apps.googleusercontent.com';
+//  var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+//  gapi.client.load('calendar', 'v3', function(){
+//  var request = gapi.client.calendar.events.insert({
+//    'calendarId': 'primary',
+//    'resource': event
+//  });
+//    console.log(event);
+//    });
+//}
+
+
+// Your Client ID can be retrieved from your project in the Google
+// Developer Console, https://console.developers.google.com
+var CLIENT_ID = '598206174272-k89f59obn673aaql9u6bjbn59lc19tnd.apps.googleusercontent.com';
+
+var SCOPES = ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/userinfo.profile"];
+
+/**
+ * Check if current user has authorized this application.
+ */
+$(function() {
+  function checkAuth() {
+    gapi.auth.authorize({
+      'client_id': CLIENT_ID,
+      'scope': SCOPES.join(' '),
+      'immediate': true
+    }, handleAuthResult);
+  }
+});
+
+/**
+ * Handle response from authorization server.
+ *
+ * @param {Object} authResult Authorization result.
+ */
+function handleAuthResult(authResult) {
+  var authorizeDiv = document.getElementById('authorize-div');
+  if (authResult && !authResult.error) {
+    // Hide auth UI, then load client library.
+    document.getElementById("login-container").style.display = "none";
+    document.getElementById("medicine-form").style.display = "block";
+    // window.location="./DashboardForm.html";
+    loadCalendarApi();
+  } else {
+    // Show auth UI, allowing the user to initiate authorization by
+    // clicking authorize button.
+    document.getElementById("login-container").style.display = "block";
+    document.getElementById("medicine-form").style.display = "none";
+  }
+}
+
+/**
+ * Initiate auth flow in response to user clicking authorize button.
+ *
+ * @param {Event} event Button click event.
+ */
+function handleAuthClick(event) {
+  gapi.auth.authorize({
+    client_id: CLIENT_ID,
+    scope: SCOPES,
+    immediate: false
+  },
+                      handleAuthResult);
+  return false;
+}
+
+/**
+ * Load Google Calendar client library. List upcoming events
+ * once client library is loaded.
+ */
+function loadCalendarApi() {
+  gapi.client.load('calendar', 'v3', listUpcomingEvents);
+}
+
+/**
+ * Print the summary and start datetime/date of the next ten events in
+ * the authorized user's calendar. If no events are found an
+ * appropriate message is printed.
+ */
+function listUpcomingEvents() {
+  var request = gapi.client.calendar.events.list({
+    'calendarId': 'primary',
+    'timeMin': (new Date()).toISOString(),
+    'showDeleted': false,
+    'singleEvents': true,
+    'maxResults': 10,
+    'orderBy': 'startTime'
+  });
+
+  request.execute(function(resp) {
+    var events = resp.items;
+    appendPre('Upcoming events:');
+
+    if (events.length > 0) {
+      for (i = 0; i < events.length; i++) {
+        var event = events[i];
+        var when = event.start.dateTime;
+        if (!when) {
+          when = event.start.date;
+        }
+        appendPre(event.summary + ' (' + when + ')')
+      }
+    } else {
+      appendPre('No upcoming events found.');
     }
-  };
-    console.log(event);
+
+  });
+}
+
+/**
+ * Append a pre element to the body containing the given message
+ * as its text node.
+ *
+ * @param {string} message Text to be placed in pre element.
+ */
+function appendPre(message) {
+  var pre = document.getElementById('output');
+  var textContent = document.createTextNode(message + '\n');
+  //  pre.appendChild(textContent);
+}
+
+function addNewEvent(event) {
+  var CLIENT_ID = '598206174272-k89f59obn673aaql9u6bjbn59lc19tnd.apps.googleusercontent.com';
+
+  var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+  var request = gapi.client.calendar.events.insert({
+    'calendarId': 'primary',
+    'resource': event
+  });
+
+  request.execute(function(event) {
+    appendPre('Event created: ' + event.htmlLink);
+  });
 }

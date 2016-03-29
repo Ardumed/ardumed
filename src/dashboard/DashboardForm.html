@@ -8,6 +8,8 @@
     <script src="/DashboardForm.js" charset="utf-8"></script>
   </head>
   <body class="body-tag">
+
+   <div id="medicine-form">
     <div class="row">
       <div class="header-container">
         <div class="header-text text-center">Medicine Automation</div>
@@ -216,12 +218,30 @@
           <div class="row buttons-row">
             <!-- <div class="col-sm-2 btn btn-success">Save</div> -->
             <div class="col-sm-3">
-              <input type="button" value="Submit" class="btn btn-primary col-sm-12" onclick="addEvent();">
+              <input type="button" value="Submit" class="btn btn-primary col-sm-12" onclick="createAllEvent();">
             </div>
           </div>
         </div>
       </div>
     </form>
+    </div>
+    <div id="login-container">
+          <div class="row">
+      <div class="ardumed-logo-container text-center">
+        <img src="/ardumed_logo.png" alt="" class="ardumed-logo center"/>
+      </div>
+    </div>
 
+    <!-- Login button -->
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <div class="btn btn-lg login-button" id="authorize-div">
+          <i class="fa fa-google-plus google-login-icon"></i>
+          <span class="login-button-text" id="authorize-button" onclick="handleAuthClick(event)">Sign in with Google</span>
+        </div>
+      </div>
+    </div>
+
+    </div>
   </body>
 </html>
