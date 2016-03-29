@@ -17,6 +17,7 @@
     "hapi": "^13.2.1",
     "johnny-five": "^0.9.34",
     "mongodb": "^2.1.10",
+    "mongojs": "^2.3.0",
     "serialport": "^2.0.6"
   }
 }
