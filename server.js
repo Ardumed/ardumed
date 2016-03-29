@@ -17,7 +17,7 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/src/assets'));
 app.use(express.static(__dirname + '/src/include'));
 app.use(express.static(__dirname + '/src/dashboard'));
-app.use(express.static(__dirname + '/src/assets'));
+app.use(express.static(__dirname + '/src/login'));
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname + '/src/login/login.html'));

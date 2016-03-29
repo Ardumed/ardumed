@@ -102,9 +102,45 @@ function countMedicine() {
 function addEvent()
 {
   var summary = "Medicine Reminder";
-  var description = "";
-  for(var i=0;i<document.patientForm.medicineNumber.value;i++)
+  var description = ["","",""];
+  for(var i=0;i<medicineNumber;i++)
     {
-      description += "";
+      if($('#morningCheckbox' + (i+1)).prop('checked'))
+      description[0] += " Medicine " + (i+1) + ": " + $('#medicineName' + (i+1) + ' input').val();
+      if($('#noonCheckbox' + (i+1)).prop('checked'))
+      description[1] += " Medicine " + (i+1) + ": " + $('#medicineName' + (i+1) + ' input').val();
+      if($('#nightCheckbox' + (i+1)).prop('checked'))
+      description[2] += " Medicine " + (i+1) + ": " + $('#medicineName' + (i+1) + ' input').val();
     }
+  console.log(description);
+  var reccur =  Math.floor(( Date.parse(toDate) - Date.parse(fromDate) ) / 86400000);
+  var reccurence = "RRULE:FREQ=DAILY;COUNT="+reccur;
+    var event = {
+    'summary': summary,
+    'description': description[0],
+    'transparency': 'transparent',
+    'visibility': 'public',
+    'start': {
+      'dateTime': '2016-03-29T08:00:00',
+      'timeZone': 'Asia/Kolkata'
+    },
+    'end': {
+      'dateTime': '2016-03-29T09:00:00',
+      'timeZone': 'Asia/Kolkata'
+    },
+    'recurrence': [
+      reccurence
+    ],
+    'reminders': {
+      'useDefault': false,
+      'overrides': [{
+        'method': 'email',
+        'minutes': 60
+      }, {
+        'method': 'popup',
+        'minutes': 10
+      }]
+    }
+  };
+    console.log(event);
 }
