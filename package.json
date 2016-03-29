@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "async": "^1.5.2",
     "body-parser": "^1.15.0",
     "bower": "1.7.7",
     "express": "^4.13.4",
     "hapi": "^13.2.1",
+    "hold": "0.0.10",
     "johnny-five": "^0.9.34",
     "mongodb": "^2.1.10",
     "mongojs": "^2.3.0",

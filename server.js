@@ -43,7 +43,7 @@ app.post('/simulation', function(req, res){
   // reply.date = req.body.date;
   // reply.time = req.body.time;
   simulationSave(req);
-  res.json(reply);
+  res.sendFile(path.join(__dirname + '/src/simulation/simget.html'));
 });
 
 var getDetails = function(req){
@@ -52,7 +52,7 @@ var getDetails = function(req){
   det.age = req.body.patientAge;
   det.medNum = req.body.medicineNumber;
 
-  var fromDate = new Date(req.body.fromDate);
+  var fromDate = new Date(req.body.fromdate);
   fromDate.setHours(0,0,0,0);
   det.from = fromDate;
 
