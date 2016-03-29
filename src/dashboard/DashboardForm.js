@@ -11,7 +11,7 @@ $(function() {
     minDate: currDate
   });
   fromDate = $('#datetimepicker1').data("DateTimePicker").date();
-  fromDateCalendar = fromDate._d.toJSON().substr(0,10);
+  fromDateCalendar = dateConverter(fromDate._d);
 
   // Set up calendar for "Prescription to"
   $('#datetimepicker2').datetimepicker({
@@ -29,7 +29,7 @@ $(function() {
   // Update if change in FROM date
   fromDateParent.on('dp.change', function(e) {
     fromDate = e.date;
-    fromDateCalendar = fromDate._d.toJSON().substr(0,10);
+    fromDateCalendar = dateConverter(fromDate._d);
     document.patientForm.fromDate.value = e.date;
     // modify minimum date for TO calendar according to value from FROM calendar
     $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
@@ -103,12 +103,12 @@ function createAllEvent()
   }
   var startDate = [];
   var endDate = [];
-  startDate[0] = fromDateCalendar + 'T08:30:00';
-  startDate[1] = fromDateCalendar + 'T13:30:00';
-  startDate[2] = fromDateCalendar + 'T20:30:00';
-  endDate[0] = fromDateCalendar + 'T09:30:00';
-  endDate[1] = fromDateCalendar + 'T14:30:00';
-  endDate[2] = fromDateCalendar + 'T21:30:00';
+  startDate[0] = fromDateCalendar + 'T08:00:00';
+  startDate[1] = fromDateCalendar + 'T13:00:00';
+  startDate[2] = fromDateCalendar + 'T20:00:00';
+  endDate[0] = fromDateCalendar + 'T09:00:00';
+  endDate[1] = fromDateCalendar + 'T14:00:00';
+  endDate[2] = fromDateCalendar + 'T21:00:00';
   var reccur =  Math.floor(( Date.parse(toDate) - Date.parse(fromDate) ) / 86400000) +1;
     var reccurence = "RRULE:FREQ=DAILY;COUNT="+reccur.toString();
   var event;
@@ -285,3 +285,30 @@ function addNewEvent(event) {
     appendPre('Event created: ' + event.htmlLink);
   });
 }
+
+function dateConverter(passedDate) {
+   var months = {
+     'Jan' : '01',
+     'Feb' : '02',
+     'Mar' : '03',
+     'Apr' : '04',
+     'May' : '05',
+     'Jun' : '06',
+     'Jul' : '07',
+     'Aug' : '08',
+     'Sep' : '09',
+     'Oct' : '10',
+     'Nov' : '11',
+     'Dec' : '12',
+   };
+
+   var month = passedDate.toString().substr(4,3);
+   month = months[month];
+
+   var day = passedDate.toString().substr(8,2);
+
+   var year = passedDate.toString().substr(11,4);
+
+   var date = year+ '-' +month+ '-' +day;
+   return date;
+ }
