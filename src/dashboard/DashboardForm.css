@@ -152,17 +152,19 @@ input[type=radio]:checked + .prescription-quantity-radio-label:after {
   margin-top: -27px;
   margin-right: 5px;
   border-radius: 10px;
-  border: 1px solid #BDBDBD;
   float: right;
 }
 .color-label1:after {
   background-color: #FF6565;
+  border: 1px solid #DF4444;
 }
 .color-label2:after {
   background-color: #FFFE03;
+  border: 1px solid #F6F101;
 }
 .color-label3:after {
   background-color: #01BB01;
+  border: 1px solid #019715;
 }
 
 #login-container {
