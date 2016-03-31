@@ -218,7 +218,7 @@
           <div class="row buttons-row">
             <!-- <div class="col-sm-2 btn btn-success">Save</div> -->
             <div class="col-sm-3">
-              <input type="submit" value="Submit" class="btn btn-primary col-sm-12" onclick="createAllEvent();">
+              <input type="button" value="Submit" class="btn btn-primary col-sm-12" onclick="createAllEvent();">
             </div>
           </div>
         </div>
@@ -235,9 +235,9 @@
     <!-- Login button -->
     <div class="row">
       <div class="col-sm-12 text-center">
-        <div class="btn btn-lg login-button" id="authorize-div">
+        <div class="btn btn-lg login-button" id="authorize-div" onclick="handleAuthClick(event)">
           <i class="fa fa-google-plus google-login-icon"></i>
-          <span class="login-button-text" id="authorize-button" onclick="handleAuthClick(event)">Sign in with Google</span>
+          <span class="login-button-text" id="authorize-button">Sign in with Google</span>
         </div>
       </div>
     </div>

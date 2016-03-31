@@ -90,6 +90,11 @@ function countMedicine() {
 
 function createAllEvent()
 {
+  if($('#patientName').val() == '')
+    {
+      alert("Enter Patient Name");
+      return false;
+    }
   var summary = "Medicine Reminder";
   var description = ["","",""];
   for(var i=0;i<medicineNumber;i++)
@@ -147,6 +152,7 @@ function createAllEvent()
       console.log(event);
     }
   }
+  window.location = 'http://localhost:3000/simulation';
 }
 
 //function addOneEvent(event) {
