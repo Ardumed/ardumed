@@ -12,7 +12,7 @@ $(function() {
   });
   fromDate = $('#datetimepicker1').data("DateTimePicker").date();
   fromDateCalendar = dateConverter(fromDate._d);
-
+  document.patientForm.fromDate.value = fromDate;
   // Set up calendar for "Prescription to"
   $('#datetimepicker2').datetimepicker({
     format: 'DD MMM YYYY',
@@ -21,7 +21,7 @@ $(function() {
   });
   toDate = $('#datetimepicker2').data("DateTimePicker").date();
   toDateCalendar = toDate._d.toJSON().substr(0,10);
-
+  document.patientForm.toDate.value = toDate;
   // Get parent elements of calendars
   var fromDateParent = $('#datetimepicker1').parent();
   var toDateParent = $('#datetimepicker2').parent();
