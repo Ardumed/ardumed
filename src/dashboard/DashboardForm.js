@@ -91,10 +91,10 @@ function countMedicine() {
 function createAllEvent()
 {
   if($('#patientName').val() == '')
-    {
-      alert("Enter Patient Name");
-      return false;
-    }
+  {
+    alert("Enter Patient Name");
+    return false;
+  }
   var summary = "Medicine Reminder";
   var description = ["","",""];
   for(var i=0;i<medicineNumber;i++)
@@ -115,7 +115,7 @@ function createAllEvent()
   endDate[1] = fromDateCalendar + 'T14:00:00';
   endDate[2] = fromDateCalendar + 'T21:00:00';
   var reccur =  Math.floor(( Date.parse(toDate) - Date.parse(fromDate) ) / 86400000) +1;
-    var reccurence = "RRULE:FREQ=DAILY;COUNT="+reccur.toString();
+  var reccurence = "RRULE:FREQ=DAILY;COUNT="+reccur.toString();
   var event;
   for(var i=0;i<3;i++)
   {
@@ -148,25 +148,11 @@ function createAllEvent()
           }]
         }
       };
-            addNewEvent(event);
-      console.log(event);
+      addNewEvent(event);
     }
   }
   window.location = 'http://localhost:3000/simulation';
 }
-
-//function addOneEvent(event) {
-//  var CLIENT_ID = '598206174272-k89f59obn673aaql9u6bjbn59lc19tnd.apps.googleusercontent.com';
-//  var SCOPES = ["https://www.googleapis.com/auth/calendar"];
-//  gapi.client.load('calendar', 'v3', function(){
-//  var request = gapi.client.calendar.events.insert({
-//    'calendarId': 'primary',
-//    'resource': event
-//  });
-//    console.log(event);
-//    });
-//}
-
 
 // Your Client ID can be retrieved from your project in the Google
 // Developer Console, https://console.developers.google.com
@@ -293,28 +279,28 @@ function addNewEvent(event) {
 }
 
 function dateConverter(passedDate) {
-   var months = {
-     'Jan' : '01',
-     'Feb' : '02',
-     'Mar' : '03',
-     'Apr' : '04',
-     'May' : '05',
-     'Jun' : '06',
-     'Jul' : '07',
-     'Aug' : '08',
-     'Sep' : '09',
-     'Oct' : '10',
-     'Nov' : '11',
-     'Dec' : '12',
-   };
+  var months = {
+    'Jan' : '01',
+    'Feb' : '02',
+    'Mar' : '03',
+    'Apr' : '04',
+    'May' : '05',
+    'Jun' : '06',
+    'Jul' : '07',
+    'Aug' : '08',
+    'Sep' : '09',
+    'Oct' : '10',
+    'Nov' : '11',
+    'Dec' : '12',
+  };
 
-   var month = passedDate.toString().substr(4,3);
-   month = months[month];
+  var month = passedDate.toString().substr(4,3);
+  month = months[month];
 
-   var day = passedDate.toString().substr(8,2);
+  var day = passedDate.toString().substr(8,2);
 
-   var year = passedDate.toString().substr(11,4);
+  var year = passedDate.toString().substr(11,4);
 
-   var date = year+ '-' +month+ '-' +day;
-   return date;
- }
+  var date = year+ '-' +month+ '-' +day;
+  return date;
+}
