@@ -17,7 +17,7 @@
       </div>
 
       <!-- Form to get Patient and Medicine details -->
-      <form class="form-tag" name="patientForm" action="">
+      <form class="form-tag" name="patientForm" action="/setprescription" method='POST'>
         <div class="row">
           <div class="form-container">
             <div class="form-heading">Kindly fill your Prescription Details</div>
@@ -99,17 +99,17 @@
               <div class="col-md-4 prescription-time hidden" id="dosageTime1">
                 <label class="font16">Dosage Time</label>
                 <div class="squaredThree">
-                  <input type="checkbox" value="morningCheckbox1" id="morningCheckbox1" name="morningCheckbox1" checked/>
+                  <input type="checkbox" value="morningCheckbox1" id="morningCheckbox1" name="morningCheckbox1"/>
                   <label for="morningCheckbox1" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Morning</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="checkbox" value="noonCheckbox1" id="noonCheckbox1" name="noonCheckbox1" checked/>
+                  <input type="checkbox" value="noonCheckbox1" id="noonCheckbox1" name="noonCheckbox1"/>
                   <label for="noonCheckbox1" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Afternoon</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="checkbox" value="nightCheckbox1" id="nightCheckbox1" name="nightCheckbox1" checked/>
+                  <input type="checkbox" value="nightCheckbox1" id="nightCheckbox1" name="nightCheckbox1"/>
                   <label for="nightCheckbox1" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Night</label>
                 </div>
@@ -118,17 +118,17 @@
               <div class="col-md-4 prescription-time hidden" id="dosageTime2">
                 <label class="font16">Dosage Time</label>
                 <div class="squaredThree">
-                  <input type="checkbox" value="morningCheckbox2" id="morningCheckbox2" name="morningCheckbox2" checked/>
+                  <input type="checkbox" value="morningCheckbox2" id="morningCheckbox2" name="morningCheckbox2"/>
                   <label for="morningCheckbox2" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Morning</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="checkbox" value="noonCheckbox2" id="noonCheckbox2" name="noonCheckbox2" checked/>
+                  <input type="checkbox" value="noonCheckbox2" id="noonCheckbox2" name="noonCheckbox2"/>
                   <label for="noonCheckbox2" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Afternoon</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="checkbox" value="nightCheckbox2" id="nightCheckbox2" name="nightCheckbox2" checked/>
+                  <input type="checkbox" value="nightCheckbox2" id="nightCheckbox2" name="nightCheckbox2"/>
                   <label for="nightCheckbox2" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Night</label>
                 </div>
@@ -137,17 +137,17 @@
               <div class="col-md-4 prescription-time hidden" id="dosageTime3">
                 <label class="font16">Dosage Time</label>
                 <div class="squaredThree">
-                  <input type="checkbox" value="morningCheckbox3" id="morningCheckbox3" name="morningCheckbox3" checked/>
+                  <input type="checkbox" value="morningCheckbox3" id="morningCheckbox3" name="morningCheckbox3"/>
                   <label for="morningCheckbox3" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Morning</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="checkbox" value="noonCheckbox3" id="noonCheckbox3" name="noonCheckbox3" checked/>
+                  <input type="checkbox" value="noonCheckbox3" id="noonCheckbox3" name="noonCheckbox3"/>
                   <label for="noonCheckbox3" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Afternoon</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="checkbox" value="nightCheckbox3" id="nightCheckbox3" name="nightCheckbox3" checked/>
+                  <input type="checkbox" value="nightCheckbox3" id="nightCheckbox3" name="nightCheckbox3"/>
                   <label for="nightCheckbox3" class="prescription-time-checkbox-label"></label>
                   <label class="prescription-time-text">Night</label>
                 </div>
@@ -218,7 +218,7 @@
             <div class="row buttons-row">
               <!-- <div class="col-sm-2 btn btn-success">Save</div> -->
               <div class="col-sm-3">
-                <input type="button" value="Submit" class="btn btn-primary col-sm-12" onclick="createAllEvent();">
+                <input type="submit" value="Submit" class="btn btn-primary col-sm-12" onclick="createAllEvent();">
               </div>
             </div>
           </div>

@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 
 app.post('/setprescription', function (req, res) {
   getDetails(req);
-  res.sendFile(path.join(__dirname + '/app/html/setprescription.html'));
+  res.sendFile(path.join(__dirname + '/src/simulation/simget.html'));
 });
 
 app.get('/simulation', function(req, res){
@@ -52,12 +52,12 @@ var getDetails = function(req){
   det.age = req.body.patientAge;
   det.medNum = req.body.medicineNumber;
 
-  var fromDate = new Date(req.body.fromdate);
+  var fromDate = new Date(req.body.fromDate);
   fromDate.setHours(0,0,0,0);
   det.from = fromDate;
 
   var toDate = new Date(req.body.toDate);
-  toDate.setHours(0,0,0,0);
+  toDate.setHours(24,0,0,0);
   det.to = toDate;
 
   det.med0 = req.body.medicineName1;
@@ -77,7 +77,6 @@ var getDetails = function(req){
   det.med2noon = req.body.noonCheckbox3;
   det.med2night = req.body.nightCheckbox3;
   det.med2syrup = req.body.check3;
-
 
   var insertDocument = function(db, callback) {
      db.collection('user').insertOne(det, function(err, result) {
@@ -107,12 +106,12 @@ var simulationSave = function(req){
      db.collection('simulation').insertOne(det, function(err, result) {
       assert.equal(err, null);
       console.log(det);
-      console.log("Inserted a document into the restaurants collection.");
+      console.log("Inserted a document into the user collection.");
       callback();
     });
   };
 
-  MongoClient.connect(url, function(err, db) {
+  return MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     insertDocument(db, function() {
         db.close();
