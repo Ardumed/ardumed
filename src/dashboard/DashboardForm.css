@@ -51,7 +51,7 @@
 }
 
 /* START dosage time checkbox styling */
-.prescription-time-checkbox-label {
+.checkbox-label {
   width: 15px;
   height: 15px;
   cursor: pointer;
@@ -60,7 +60,7 @@
   left: 0;
   border: 1px solid #777;
 }
-.prescription-time-checkbox-label:after {
+.checkbox-label:after {
   content: '';
   width: 9px;
   height: 6px;
@@ -74,13 +74,13 @@
   opacity: 0;
   transform: rotate(-45deg);
 }
-.prescription-time-checkbox-label:hover::after {
+.checkbox-label:hover::after {
   opacity: 0.3;
 }
 input[type=checkbox] {
   visibility: hidden;
 }
-input[type=checkbox]:checked + .prescription-time-checkbox-label:after {
+input[type=checkbox]:checked + .checkbox-label:after {
   opacity: 1;
 }
 /* END dosage time checkbox styling */
@@ -119,7 +119,7 @@ input[type=radio]:checked + .prescription-quantity-radio-label:after {
 }
 /* END dosage quantity radio styling */
 
-.prescription-time-text {
+.prescription-time-text, .recurrence-text{
   position: absolute;
   width: 100%;
   left: 2em;
