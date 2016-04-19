@@ -17,6 +17,7 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use(express.static(__dirname + '/src/assets'));
 app.use(express.static(__dirname + '/src/include'));
 app.use(express.static(__dirname + '/src/dashboard'));
+app.use(express.static(__dirname + '/src/simulation'));
 //app.use(express.static(__dirname + '/src/login'));
 
 //app.get('/login', function (req, res) {
@@ -127,7 +128,7 @@ var simulationSave = function(req){
  */
 
 
-
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+ var port = process.env.PORT || 3000;
+ app.listen(port, function() {
+  console.log('Example app listening on port '+ port +' !');
 });
