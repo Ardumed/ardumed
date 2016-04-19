@@ -36,15 +36,15 @@ var handleAuthResult = function(authResult) {
   var authorizeDiv = document.getElementById('authorize-div');
   if (authResult && !authResult.error) {
     // Hide auth UI, then load client library.
-    document.getElementById("login-container").style.display = "none";
-    document.getElementById("medicine-form").style.display = "block";
+    $('#login-container').fadeOut();
+    $('#medicine-form').fadeIn();
     // window.location="./DashboardForm.html";
     loadCalendarApi();
   } else {
     // Show auth UI, allowing the user to initiate authorization by
     // clicking authorize button.
-    document.getElementById("login-container").style.display = "block";
-    document.getElementById("medicine-form").style.display = "none";
+    $('#login-container').fadeIn();
+    $('#medicine-form').fadeOut();
   }
 };
 
@@ -294,7 +294,8 @@ var addNewEvent = function(event) {
 }
 function signOut() {
     gapi.auth.signOut();
-    location.reload();
+    $('#login-container').fadeIn();
+    $('#medicine-form').fadeOut();
  }
 
 // Initial setup
