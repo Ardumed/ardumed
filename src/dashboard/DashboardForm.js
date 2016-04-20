@@ -33,12 +33,10 @@ var handleAuthClick = function(event) {
 // * Handle response from authorization server.
 // * @param {Object} authResult Authorization result.
 var handleAuthResult = function(authResult) {
-  var authorizeDiv = document.getElementById('authorize-div');
   if (authResult && !authResult.error) {
     // Hide auth UI, then load client library.
     $('#login-container').fadeOut();
     $('#medicine-form').fadeIn();
-    // window.location="./DashboardForm.html";
     loadCalendarApi();
   } else {
     // Show auth UI, allowing the user to initiate authorization by
