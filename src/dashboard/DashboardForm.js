@@ -294,6 +294,13 @@ var addNewEvent = function(event) {
     });
 }
 
+// Toggle recurrence fields based upon recurrence checkbox value
+var recurrenceCheck = function(obj) {
+  var index = obj.id.charAt(obj.id.length - 1);
+  $('#recurrenceField' + index).toggleClass('hidden');
+  $('#dosageTime' + index).toggleClass('hidden');
+};
+
 // Initial setup
 var init = function() {
     checkAuth();
