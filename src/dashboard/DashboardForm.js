@@ -33,19 +33,17 @@ var handleAuthClick = function(event) {
 // * Handle response from authorization server.
 // * @param {Object} authResult Authorization result.
 var handleAuthResult = function(authResult) {
-    var authorizeDiv = document.getElementById('authorize-div');
-    if (authResult && !authResult.error) {
-        // Hide auth UI, then load client library.
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("medicine-form").style.display = "block";
-        // window.location="./DashboardForm.html";
-        loadCalendarApi();
-    } else {
-        // Show auth UI, allowing the user to initiate authorization by
-        // clicking authorize button.
-        document.getElementById("login-container").style.display = "block";
-        document.getElementById("medicine-form").style.display = "none";
-    }
+  if (authResult && !authResult.error) {
+    // Hide auth UI, then load client library.
+    $('#login-container').fadeOut();
+    $('#medicine-form').fadeIn();
+    loadCalendarApi();
+  } else {
+    // Show auth UI, allowing the user to initiate authorization by
+    // clicking authorize button.
+    $('#login-container').fadeIn();
+    $('#medicine-form').fadeOut();
+  }
 };
 
 // * Load Google Calendar client library. List upcoming events
@@ -226,11 +224,11 @@ var createAllEvent = function() {
     var description = ["", "", ""];
     for (var i = 0; i < medicineNumber; i++) {
         if ($('#morningCheckbox' + (i + 1)).prop('checked'))
-            description[0] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val();
+            description[0] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val()  + ' Dosage:' + ($('input[name="check'+ (i + 1) +'"]:checked').val());
         if ($('#noonCheckbox' + (i + 1)).prop('checked'))
-            description[1] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val();
+            description[1] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val()  + ' Dosage:' + ($('input[name="check'+ (i + 1) +'"]:checked').val());
         if ($('#nightCheckbox' + (i + 1)).prop('checked'))
-            description[2] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val();
+            description[2] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val()  + ' Dosage:' + ($('input[name="check'+ (i + 1) +'"]:checked').val());
     }
     var startDate = [];
     var endDate = [];
@@ -275,6 +273,55 @@ var createAllEvent = function() {
             addNewEvent(event);
         }
     }
+  // For adding hours recurrence events
+  for(j=1;j<=3;j++){
+//    console.log($("#recurrenceCheckbox" + j).is(":checked"));
+    if($("#recurrenceCheckbox" + j).is(":checked")){
+      console.log(Math.floor(24/($("#reccurHour"+j).val())));
+      var rec = Math.floor($("#reccurHour"+j).val());
+      var count = Math.floor(24/($("#reccurHour"+j).val()));
+      var t = 0, st;
+  for(i=0;i<count;i++){
+    t += rec;
+    if(t<10)
+      st = '0'+t;
+    else
+      st = t;
+    var sDate = fromDateCalendar + 'T'+st+':00:00';
+    var eDate = fromDateCalendar + 'T'+st+':30:00';
+    var descp = 'Medicine: ' + $('#medicineName' + j + ' input').val() + ' Dosage:' + ($('input[name="check'+j+'"]:checked').val());
+      event = {
+      'summary': summary,
+      'description': descp,
+      'transparency': 'transparent',
+      'visibility': 'public',
+      'start': {
+          'dateTime': sDate,
+          'timeZone': 'Asia/Kolkata'
+      },
+      'end': {
+          'dateTime': eDate,
+          'timeZone': 'Asia/Kolkata'
+      },
+      'recurrence': [
+          reccurence
+      ],
+      'reminders': {
+          'useDefault': false,
+          'overrides': [{
+              'method': 'email',
+              'minutes': 60
+          }, {
+              'method': 'popup',
+              'minutes': 10
+          }]
+      }
+  };
+//    console.log(event);
+    addNewEvent(event);
+  }
+    }
+    }
     // window.location = 'http://localhost:3000/simulation';
     return true;
 }
@@ -293,6 +340,18 @@ var addNewEvent = function(event) {
         appendPre('Event created: ' + event.htmlLink);
     });
 }
+function signOut() {
+    gapi.auth.signOut();
+    $('#login-container').fadeIn();
+    $('#medicine-form').fadeOut();
+ }
+
+// Toggle recurrence fields based upon recurrence checkbox value
+var recurrenceCheck = function(obj) {
+  var index = obj.id.charAt(obj.id.length - 1);
+  $('#recurrenceField' + index).toggleClass('hidden');
+  $('#dosageTime' + index).toggleClass('hidden');
+};
 
 // Initial setup
 var init = function() {

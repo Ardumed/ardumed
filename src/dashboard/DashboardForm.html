@@ -13,6 +13,9 @@
       <div class="row">
         <div class="header-container">
           <div class="header-text text-center">Medicine Automation</div>
+          <div class="sign-out-button btn btn-default">
+            <a href="#" onclick="signOut();" style="text-decoration: none;">Sign out</a>
+          </div>
         </div>
       </div>
 
@@ -98,83 +101,110 @@
             <div class="row">
               <div class="col-sm-4 recurrence-div hidden" id="recurrenceMed1">
                 <div class="squaredThree">
-                  <input type="checkbox" value="recurrenceCheckbox1" id="recurrenceCheckbox1" name="recurrenceCheckbox1"/>
+                  <input type="checkbox" value="recurrenceCheckbox1" id="recurrenceCheckbox1" name="recurrenceCheckbox1" onclick="recurrenceCheck(this)"/>
                   <label for="recurrenceCheckbox1" class="checkbox-label"></label>
                   <label class="recurrence-text">Recurrence</label>
                 </div>
               </div>
               <div class="col-sm-4 recurrence-div hidden" id="recurrenceMed2">
                 <div class="squaredThree">
-                  <input type="checkbox" value="recurrenceCheckbox2" id="recurrenceCheckbox2" name="recurrenceCheckbox2"/>
+                  <input type="checkbox" value="recurrenceCheckbox2" id="recurrenceCheckbox2" name="recurrenceCheckbox2" onclick="recurrenceCheck(this)"/>
                   <label for="recurrenceCheckbox2" class="checkbox-label"></label>
                   <label class="recurrence-text">Recurrence</label>
                 </div>
               </div>
               <div class="col-sm-4 recurrence-div hidden" id="recurrenceMed3">
                 <div class="squaredThree">
-                  <input type="checkbox" value="recurrenceCheckbox3" id="recurrenceCheckbox3" name="recurrenceCheckbox3"/>
+                  <input type="checkbox" value="recurrenceCheckbox3" id="recurrenceCheckbox3" name="recurrenceCheckbox3" onclick="recurrenceCheck(this)"/>
                   <label for="recurrenceCheckbox3" class="checkbox-label"></label>
                   <label class="recurrence-text">Recurrence</label>
                 </div>
               </div>
             </div>
 
-            <!-- Dosage Time -->
+            <!-- Dosage Time & Recurrence Fields-->
             <div class="row">
-              <div class="col-md-4 prescription-time hidden" id="dosageTime1">
-                <label class="font16">Dosage Time</label>
-                <div class="squaredThree">
-                  <input type="checkbox" value="morningCheckbox1" id="morningCheckbox1" name="morningCheckbox1"/>
-                  <label for="morningCheckbox1" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Morning</label>
+              <div class="col-sm-4">
+                <div class="recurrence-field hidden" id="recurrenceField1">
+                  <span class="font16">Repeat after:</span>
+                  <div class="input-group recurrence-field-group">
+                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour1" name="recurrenceHour1" id="reccurHour1">
+                    <span class="input-group-addon" id="recurrenceHour1">HH</span>
+                  </div>
                 </div>
-                <div class="squaredThree">
-                  <input type="checkbox" value="noonCheckbox1" id="noonCheckbox1" name="noonCheckbox1"/>
-                  <label for="noonCheckbox1" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Afternoon</label>
-                </div>
-                <div class="squaredThree">
-                  <input type="checkbox" value="nightCheckbox1" id="nightCheckbox1" name="nightCheckbox1"/>
-                  <label for="nightCheckbox1" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Night</label>
-                </div>
-              </div>
-
-              <div class="col-md-4 prescription-time hidden" id="dosageTime2">
-                <label class="font16">Dosage Time</label>
-                <div class="squaredThree">
-                  <input type="checkbox" value="morningCheckbox2" id="morningCheckbox2" name="morningCheckbox2"/>
-                  <label for="morningCheckbox2" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Morning</label>
-                </div>
-                <div class="squaredThree">
-                  <input type="checkbox" value="noonCheckbox2" id="noonCheckbox2" name="noonCheckbox2"/>
-                  <label for="noonCheckbox2" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Afternoon</label>
-                </div>
-                <div class="squaredThree">
-                  <input type="checkbox" value="nightCheckbox2" id="nightCheckbox2" name="nightCheckbox2"/>
-                  <label for="nightCheckbox2" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Night</label>
+                <div class="prescription-time hidden" id="dosageTime1">
+                  <label class="font16">Dosage Time</label>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="morningCheckbox1" id="morningCheckbox1" name="morningCheckbox1"/>
+                    <label for="morningCheckbox1" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Morning</label>
+                  </div>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="noonCheckbox1" id="noonCheckbox1" name="noonCheckbox1"/>
+                    <label for="noonCheckbox1" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Afternoon</label>
+                  </div>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="nightCheckbox1" id="nightCheckbox1" name="nightCheckbox1"/>
+                    <label for="nightCheckbox1" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Night</label>
+                  </div>
                 </div>
               </div>
 
-              <div class="col-md-4 prescription-time hidden" id="dosageTime3">
-                <label class="font16">Dosage Time</label>
-                <div class="squaredThree">
-                  <input type="checkbox" value="morningCheckbox3" id="morningCheckbox3" name="morningCheckbox3"/>
-                  <label for="morningCheckbox3" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Morning</label>
+              <div class="col-sm-4">
+                <div class="recurrence-field hidden" id="recurrenceField2">
+                  <span class="font16">Repeat after:</span>
+                  <div class="input-group recurrence-field-group">
+                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour2" name="recurrenceHour2" id="reccurHour2">
+                    <span class="input-group-addon" id="recurrenceHour2">HH</span>
+                  </div>
                 </div>
-                <div class="squaredThree">
-                  <input type="checkbox" value="noonCheckbox3" id="noonCheckbox3" name="noonCheckbox3"/>
-                  <label for="noonCheckbox3" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Afternoon</label>
+                <div class="prescription-time hidden" id="dosageTime2">
+                  <label class="font16">Dosage Time</label>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="morningCheckbox2" id="morningCheckbox2" name="morningCheckbox2"/>
+                    <label for="morningCheckbox2" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Morning</label>
+                  </div>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="noonCheckbox2" id="noonCheckbox2" name="noonCheckbox2"/>
+                    <label for="noonCheckbox2" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Afternoon</label>
+                  </div>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="nightCheckbox2" id="nightCheckbox2" name="nightCheckbox2"/>
+                    <label for="nightCheckbox2" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Night</label>
+                  </div>
                 </div>
-                <div class="squaredThree">
-                  <input type="checkbox" value="nightCheckbox3" id="nightCheckbox3" name="nightCheckbox3"/>
-                  <label for="nightCheckbox3" class="checkbox-label"></label>
-                  <label class="prescription-time-text">Night</label>
+              </div>
+
+              <div class="col-sm-4">
+                <div class="recurrence-field hidden" id="recurrenceField3">
+                  <span class="font16">Repeat after:</span>
+                  <div class="input-group recurrence-field-group">
+                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour3" name="recurrenceHour3" id="reccurHour3">
+                    <span class="input-group-addon" id="recurrenceHour3">HH</span>
+                  </div>
+                </div>
+                <div class="prescription-time hidden" id="dosageTime3">
+                  <label class="font16">Dosage Time</label>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="morningCheckbox3" id="morningCheckbox3" name="morningCheckbox3"/>
+                    <label for="morningCheckbox3" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Morning</label>
+                  </div>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="noonCheckbox3" id="noonCheckbox3" name="noonCheckbox3"/>
+                    <label for="noonCheckbox3" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Afternoon</label>
+                  </div>
+                  <div class="squaredThree">
+                    <input type="checkbox" value="nightCheckbox3" id="nightCheckbox3" name="nightCheckbox3"/>
+                    <label for="nightCheckbox3" class="checkbox-label"></label>
+                    <label class="prescription-time-text">Night</label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -184,57 +214,57 @@
               <div class="col-md-4 prescription-time margin-top hidden" id="dosageQuantity1">
                 <label class="font16">Dosage Quantity</label>
                 <div class="squaredThree">
-                  <input type="radio" value="half1" id="halfSpoon1" name="check1" checked/>
+                  <input type="radio" value="Half" id="halfSpoon1" name="check1" checked/>
                   <label for="halfSpoon1" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">Half Spoon (7.5 ml)</label>
+                  <label class="prescription-time-text">Half Spoon/Pill</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="radio" value="full1" id="oneSpoon1" name="check1"/>
+                  <input type="radio" value="Full" id="oneSpoon1" name="check1"/>
                   <label for="oneSpoon1" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">One Spoon (15 ml)</label>
+                  <label class="prescription-time-text">One Spoon/Pill</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="radio" value="double1" id="twoSpoon1" name="check1"/>
+                  <input type="radio" value="Double" id="twoSpoon1" name="check1"/>
                   <label for="twoSpoon1" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">Two spoons (30 ml)</label>
+                  <label class="prescription-time-text">Two Spoons/Pill</label>
                 </div>
               </div>
 
               <div class="col-md-4 prescription-time margin-top hidden" id="dosageQuantity2">
                 <label class="font16">Dosage Quantity</label>
                 <div class="squaredThree">
-                  <input type="radio" value="half2" id="halfSpoon2" name="check2" checked/>
+                  <input type="radio" value="Half" id="halfSpoon2" name="check2" checked/>
                   <label for="halfSpoon2" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">Half Spoon (7.5 ml)</label>
+                  <label class="prescription-time-text">Half Spoon/Pill</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="radio" value="full2" id="oneSpoon2" name="check2"/>
+                  <input type="radio" value="Full" id="oneSpoon2" name="check2"/>
                   <label for="oneSpoon2" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">One Spoon (15 ml)</label>
+                  <label class="prescription-time-text">One Spoon/Pill</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="radio" value="double2" id="twoSpoon2" name="check2"/>
+                  <input type="radio" value="Double" id="twoSpoon2" name="check2"/>
                   <label for="twoSpoon2" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">Two spoons (30 ml)</label>
+                  <label class="prescription-time-text">Two Spoons/Pill</label>
                 </div>
               </div>
 
               <div class="col-md-4 prescription-time margin-top hidden" id="dosageQuantity3">
                 <label class="font16">Dosage Quantity</label>
                 <div class="squaredThree">
-                  <input type="radio" value="half3" id="halfSpoon3" name="check3" checked/>
+                  <input type="radio" value="Half" id="halfSpoon3" name="check3" checked/>
                   <label for="halfSpoon3" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">Half Spoon (7.5 ml)</label>
+                  <label class="prescription-time-text">Half Spoon/Pill</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="radio" value="full3" id="oneSpoon3" name="check3"/>
+                  <input type="radio" value="Full" id="oneSpoon3" name="check3"/>
                   <label for="oneSpoon3" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">One Spoon (15 ml)</label>
+                  <label class="prescription-time-text">One Spoon/Pill</label>
                 </div>
                 <div class="squaredThree">
-                  <input type="radio" value="double3" id="twoSpoon3" name="check3"/>
+                  <input type="radio" value="Double" id="twoSpoon3" name="check3"/>
                   <label for="twoSpoon3" class="prescription-quantity-radio-label"></label>
-                  <label class="prescription-time-text">Two spoons (30 ml)</label>
+                  <label class="prescription-time-text">Two Spoons/Pill</label>
                 </div>
               </div>
             </div>
@@ -257,7 +287,7 @@
         </div>
       </div>
 
-      <!-- Login button -->
+
       <div class="row">
         <div class="col-sm-12 text-center">
           <div class="btn btn-lg login-button" id="authorize-div" onclick="handleAuthClick(event)">
