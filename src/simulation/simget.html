@@ -3,12 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Ardumed Simulation</title>
+    <link rel="import" href="/dependencies.html">
+    <link rel="stylesheet" href="/simget.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    <form class="" action="/simulation" method="post">
-      <input type="Date" name="date" value="">
-      <input type="Time" name="time" value="">
-      <input type="submit" name="submit" value="Submit">
-    </form>
+    <div class="container">
+      <h1 class="text-center">Simulate It !</h1>
+      <div class="simulation-form">
+      <form class="" action="/simulation" method="post">
+       <div class="input-container">Date: <input type="Date" name="date" value=""></div>
+        <div class="input-container">Time: <input type="Time" name="time" value=""></div>
+        <input class="btn btn-default" type="reset" name="reset" value="Reset">
+        <input class="btn btn-default" type="submit" name="submit" value="Submit">
+      </form>
+      </div>
+    </div>
   </body>
 </html>

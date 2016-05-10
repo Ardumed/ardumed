@@ -1,0 +1,10 @@
+.simulation-form {
+  border-radius: 5px;
+  background: linear-gradient(to right, rgba(98,125,77,1) 0%, rgba(31,59,8,0.61) 100%);
+}
+.input-container input[type= 'time'], .input-container input[type= 'date']{
+  width: 150px;
+}
+.input-container {
+  padding: 1em;
+}

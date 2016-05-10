@@ -33,19 +33,17 @@ var handleAuthClick = function(event) {
 // * Handle response from authorization server.
 // * @param {Object} authResult Authorization result.
 var handleAuthResult = function(authResult) {
-    var authorizeDiv = document.getElementById('authorize-div');
-    if (authResult && !authResult.error) {
-        // Hide auth UI, then load client library.
-        document.getElementById("login-container").style.display = "none";
-        document.getElementById("medicine-form").style.display = "block";
-        // window.location="./DashboardForm.html";
-        loadCalendarApi();
-    } else {
-        // Show auth UI, allowing the user to initiate authorization by
-        // clicking authorize button.
-        document.getElementById("login-container").style.display = "block";
-        document.getElementById("medicine-form").style.display = "none";
-    }
+  if (authResult && !authResult.error) {
+    // Hide auth UI, then load client library.
+    $('#login-container').fadeOut();
+    $('#medicine-form').fadeIn();
+    loadCalendarApi();
+  } else {
+    // Show auth UI, allowing the user to initiate authorization by
+    // clicking authorize button.
+    $('#login-container').fadeIn();
+    $('#medicine-form').fadeOut();
+  }
 };
 
 // * Load Google Calendar client library. List upcoming events
@@ -293,6 +291,11 @@ var addNewEvent = function(event) {
         appendPre('Event created: ' + event.htmlLink);
     });
 }
+function signOut() {
+    gapi.auth.signOut();
+    $('#login-container').fadeIn();
+    $('#medicine-form').fadeOut();
+ }
 
 // Toggle recurrence fields based upon recurrence checkbox value
 var recurrenceCheck = function(obj) {
