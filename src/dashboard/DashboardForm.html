@@ -13,7 +13,9 @@
       <div class="row">
         <div class="header-container">
           <div class="header-text text-center">Medicine Automation</div>
-          <a href="#" onclick="signOut();">Sign out</a>
+          <div class="sign-out-button btn btn-default">
+            <a href="#" onclick="signOut();" style="text-decoration: none;">Sign out</a>
+          </div>
         </div>
       </div>
 
@@ -126,7 +128,7 @@
                 <div class="recurrence-field hidden" id="recurrenceField1">
                   <span class="font16">Repeat after:</span>
                   <div class="input-group recurrence-field-group">
-                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour1" name="recurrenceHour1">
+                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour1" name="recurrenceHour1" id="reccurHour1">
                     <span class="input-group-addon" id="recurrenceHour1">HH</span>
                   </div>
                 </div>
@@ -154,7 +156,7 @@
                 <div class="recurrence-field hidden" id="recurrenceField2">
                   <span class="font16">Repeat after:</span>
                   <div class="input-group recurrence-field-group">
-                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour2" name="recurrenceHour2">
+                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour2" name="recurrenceHour2" id="reccurHour2">
                     <span class="input-group-addon" id="recurrenceHour2">HH</span>
                   </div>
                 </div>
@@ -182,7 +184,7 @@
                 <div class="recurrence-field hidden" id="recurrenceField3">
                   <span class="font16">Repeat after:</span>
                   <div class="input-group recurrence-field-group">
-                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour3" name="recurrenceHour3">
+                    <input type="number" min="0" max="8" class="form-control" aria-describedby="recurrenceHour3" name="recurrenceHour3" id="reccurHour3">
                     <span class="input-group-addon" id="recurrenceHour3">HH</span>
                   </div>
                 </div>

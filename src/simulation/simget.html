@@ -6,16 +6,28 @@
     <link rel="import" href="/dependencies.html">
     <link rel="stylesheet" href="/simget.css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body>
+  <body class="body-tag">
     <div class="container">
       <h1 class="text-center">Simulate It !</h1>
       <div class="simulation-form">
-      <form class="" action="/simulation" method="post">
-       <div class="input-container">Date: <input type="Date" name="date" value=""></div>
-        <div class="input-container">Time: <input type="Time" name="time" value=""></div>
-        <input class="btn btn-default" type="reset" name="reset" value="Reset">
-        <input class="btn btn-default" type="submit" name="submit" value="Submit">
-      </form>
+        <form class="" action="/simulation" method="post">
+          <div class="input-group simulation-item">
+            <input type="date" class="form-control" placeholder="Simulation Date" aria-describedby="simDate" name="date">
+            <span class="input-group-addon" id="simDate">Date</span>
+          </div>
+          <div class="input-group simulation-item">
+            <input type="time" class="form-control" placeholder="Simulation Time" aria-describedby="simTime" name="time">
+            <span class="input-group-addon" id="simTime">Time</span>
+          </div>
+          <!-- <div class="input-container">Date:
+            <input type="Date" name="date" value=""></div>
+          <div class="input-container">Time:
+            <input type="Time" name="time" value=""></div> -->
+          <div class="simulation-group-btn">
+            <input class="btn btn-default simulation-item" type="reset" name="reset" value="Reset">
+            <input class="btn btn-default simulation-item" type="submit" name="submit" value="Submit">
+          </div>
+        </form>
       </div>
     </div>
   </body>

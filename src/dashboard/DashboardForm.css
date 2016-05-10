@@ -11,6 +11,14 @@
   margin: 0 auto;
   color: #eee;
   font-size: 22px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+/* Sign out button styling */
+.sign-out-button {
+  background-color: #D2D1D1;
 }
 
 /* form styling */
