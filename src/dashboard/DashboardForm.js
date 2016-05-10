@@ -224,11 +224,11 @@ var createAllEvent = function() {
     var description = ["", "", ""];
     for (var i = 0; i < medicineNumber; i++) {
         if ($('#morningCheckbox' + (i + 1)).prop('checked'))
-            description[0] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val();
+            description[0] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val()  + ' Dosage:' + ($('input[name="check'+ (i + 1) +'"]:checked').val());
         if ($('#noonCheckbox' + (i + 1)).prop('checked'))
-            description[1] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val();
+            description[1] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val()  + ' Dosage:' + ($('input[name="check'+ (i + 1) +'"]:checked').val());
         if ($('#nightCheckbox' + (i + 1)).prop('checked'))
-            description[2] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val();
+            description[2] += " Medicine " + (i + 1) + ": " + $('#medicineName' + (i + 1) + ' input').val()  + ' Dosage:' + ($('input[name="check'+ (i + 1) +'"]:checked').val());
     }
     var startDate = [];
     var endDate = [];
