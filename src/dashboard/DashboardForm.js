@@ -273,6 +273,55 @@ var createAllEvent = function() {
             addNewEvent(event);
         }
     }
+  // For adding hours recurrence events
+  for(j=1;j<=3;j++){
+//    console.log($("#recurrenceCheckbox" + j).is(":checked"));
+    if($("#recurrenceCheckbox" + j).is(":checked")){
+      console.log(Math.floor(24/($("#reccurHour"+j).val())));
+      var rec = Math.floor($("#reccurHour"+j).val());
+      var count = Math.floor(24/($("#reccurHour"+j).val()));
+      var t = 0, st;
+  for(i=0;i<count;i++){
+    t += rec;
+    if(t<10)
+      st = '0'+t;
+    else
+      st = t;
+    var sDate = fromDateCalendar + 'T'+st+':00:00';
+    var eDate = fromDateCalendar + 'T'+st+':30:00';
+    var descp = 'Medicine: ' + $('#medicineName' + j + ' input').val() + ' Dosage:' + ($('input[name="check'+j+'"]:checked').val());
+      event = {
+      'summary': summary,
+      'description': descp,
+      'transparency': 'transparent',
+      'visibility': 'public',
+      'start': {
+          'dateTime': sDate,
+          'timeZone': 'Asia/Kolkata'
+      },
+      'end': {
+          'dateTime': eDate,
+          'timeZone': 'Asia/Kolkata'
+      },
+      'recurrence': [
+          reccurence
+      ],
+      'reminders': {
+          'useDefault': false,
+          'overrides': [{
+              'method': 'email',
+              'minutes': 60
+          }, {
+              'method': 'popup',
+              'minutes': 10
+          }]
+      }
+  };
+//    console.log(event);
+    addNewEvent(event);
+  }
+    }
+    }
     // window.location = 'http://localhost:3000/simulation';
     return true;
 }
