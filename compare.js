@@ -58,7 +58,8 @@ var continuousDataNotifier = function(i) {
     if (i != 1) {
         return 0;
     }
-    url = 'mongodb://admin:nON6zS3uWa99wtGS@SG-ardumed-7417.servers.mongodirector.com:27017/admin';
+    // url = 'mongodb://admin:nON6zS3uWa99wtGS@SG-ardumed-7417.servers.mongodirector.com:27017/admin';
+    var url = 'mongodb://localhost:27017/test';
     db = mongojs(url, ['user', 'simulation']);
 
     var dbPromise1 = new Promise(function(resolve, reject) {
@@ -166,41 +167,6 @@ var continuousDataNotifier = function(i) {
                         led3.off();
                     }
                 }
-
-                //
-                //   if(userObject.med0){
-                //     led1.off();
-                //     if(isMorning && userObject.med0morning)
-                //       {led1.on();}
-                //     else if (isNoon && userObject.med0noon) {
-                //       {led1.on();}
-                //     }
-                //     else if (isNight && userObject.med0night) {
-                //       {led1.on();}
-                //     }
-                //   }
-                //   else if(userObject.med1){
-                //     led2.off();
-                //     if(isMorning && userObject.med1morning)
-                //       {led2.on();}
-                //     else if (isNoon && userObject.med1noon) {
-                //       {led2.on();}
-                //     }
-                //     else if (isNight && userObject.med1night) {
-                //       {led2.on();}
-                //     }
-                //   }
-                //   else if(userObject.med2){
-                //     led3.off();
-                //     if(isMorning && userObject.med2morning)
-                //       {led3.on();}
-                //     else if (isNoon && userObject.med2noon) {
-                //       {led3.on();}
-                //     }
-                //     else if (isNight && userObject.med2night) {
-                //       {led3.on();}
-                //     }
-                //   }
             }
         }).then(function(result) {
             console.log(result);
